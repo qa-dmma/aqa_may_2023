@@ -1,0 +1,2 @@
+New line
+Switched to 'task_1' branch
