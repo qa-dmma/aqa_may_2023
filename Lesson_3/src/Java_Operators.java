@@ -6,13 +6,9 @@ public class Java_Operators {
         Scanner Scanner_inputValue_A = new Scanner(System.in);
         System.out.println("Enter value 'A': ");
         int Value_A = Scanner_inputValue_A.nextInt();
-        //String Value_A = Scanner_inputValue_A.nextLine();
-        //int Value_A_int = Integer.valueOf(Value_A);
         Scanner Scanner_inputValue_B = new Scanner(System.in);
         System.out.println("Enter value 'B': ");
-        //String Value_B = Scanner_inputValue_B.nextLine();
         int Value_B = Scanner_inputValue_B.nextInt();
-        //int Value_B_int = Integer.valueOf(Value_B);
         int SumValues = Value_A + Value_B;
         int SubValues = Value_A - Value_B;
         int MultiValues = Value_A * Value_B;
