@@ -14,5 +14,6 @@ public class Task_6 {
         else if (Value_A > 0){
             System.out.println("Entered value '"+Value_A+"' is positive.");
         }
+        Scanner_Input.close();
     }
 }
