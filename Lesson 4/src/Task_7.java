@@ -10,7 +10,7 @@ public class Task_7 {
             System.out.println("Output : "+Value_A);
         } else if (Value_A <= 99 || Value_A >= 1000) {
             System.out.println("Value "+Value_A+" out of range.");
-
         }
+        Scanner_Input.close();
     }
 }
