@@ -18,7 +18,7 @@ public class Task_4 {
         } else if (Value_A < 10 | Value_A >= 100){
             System.out.println("Entered value out of range");
         }
-
+        Scanner_Input.close();
     }
 }
 /* Придумал более элегантное решение :) В этой задаче принцип такой же как и в 3 задаче но если использовать цикл то код
