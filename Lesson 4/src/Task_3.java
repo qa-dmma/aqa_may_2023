@@ -77,6 +77,7 @@ public class Task_3 {
         } else if (Value_A < 10 | Value_A >= 100){
             System.out.println("Entered value out of range");
         }
+        Scanner_Input.close();
     }
 }
 /* Как по мне, не много топорно вышло, но придумал пока такой вариант*/
