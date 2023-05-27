@@ -1,19 +1,33 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+#
+bin/*
+build/*
+.gradle/*
+#*.gitignore
+logs/*
+target/*
+classes/*
 
-### Eclipse ###
-.apt_generated
+#
+#
+#
+#### STS ###
+#.apt_generated
 .classpath
-.factorypath
+#.factorypath
 .project
 .settings
 .springBeans
 .sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+.target
+*.iws
+*.iml
+*.ipr
+/out/
+.DS_Store
+src/.DS_Store
 
 ### NetBeans ###
 /nbproject/private/
@@ -21,9 +35,5 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
+/.factorypath
+/.java-version
