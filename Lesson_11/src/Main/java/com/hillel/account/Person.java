@@ -1,8 +1,8 @@
 package com.hillel.account;
 
-import com.hillel.abs.AbstractBank;
+import com.hillel.abs.AbstractPerson;
 
-public class Person extends AbstractBank {
+public class Person extends AbstractPerson {
 
     public Person(String name, String lastName, String mail, String telephoneNumber) {
         super(name, lastName, mail, telephoneNumber);
@@ -11,8 +11,13 @@ public class Person extends AbstractBank {
     public Person() {
     }
 
+    protected String toLine() {
+        return "Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".";
+    }
+
     @Override
     public String toString() {
-        return "Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".";
+        System.out.println("Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".");
+        return null;
     }
 }
