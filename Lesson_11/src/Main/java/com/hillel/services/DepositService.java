@@ -1,17 +1,39 @@
 package com.hillel.services;
 
+import com.hillel.abs.AbstractServices;
 import com.hillel.account.Account;
 
-public class DepositService {
-    private Account account;
-    private double result;
+public class DepositService extends AbstractServices {
 
-    public String Depo(Account account, double sum) {
-        this.account = account;
+
+    public DepositService(Account account, double sum) {
+        super(account, sum);
+
+    }
+
+/*
+    private String DepositServiceCount() {
         result = account.getBill().setAmount(account.getBill().getAmount() + sum);
         Rounded rounded = new Rounded();
-        System.out.println(sum + " has been transfered to user " + account.getPerson());
-        System.out.println("Total balance is: " + (rounded.Round(result)));
-        return "_____________________";
+        System.out.println("The paycheck '" + sum + "' went into the user '" + account.getPerson() + "' account. Total balance is: '"
+                + (rounded.Round(result)) + "'");
+        return null;
     }
+*/
+
+    @Override
+    protected String bankOperation() {
+        result = account.getBill().setAmount(account.getBill().getAmount() + sum);
+        Rounded rounded = new Rounded();
+        System.out.println("The paycheck '" + sum + "' went into the user '" + account.getPerson() + "' account. Total balance is: '"
+                + (rounded.Round(result)) + "'");
+        return null;
+    }
+
+    public String toString() {
+        return bankOperation();
+    }
+
+
 }
+

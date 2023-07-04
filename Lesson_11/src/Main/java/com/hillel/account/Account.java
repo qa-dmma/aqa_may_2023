@@ -26,6 +26,7 @@ public class Account {
     public String toString() {
         return "User: " + getPerson() + "; Balance: " + bill + ";";
     }
+
 }
 
 
