@@ -24,22 +24,7 @@ public class TransfertPayment extends AbstractServices {
         return null;
     }
 
-/*
-    private String TransfertPaymentsCount() {
-        Rounded rounded = new Rounded();
-        firstUser.getBill().setAmount(firstUser.getBill().getAmount() - amount);
-        secondUser.getBill().setAmount(secondUser.getBill().getAmount() + amount);
-        System.out.println("Transaction amount '" + amount + "' has been transfered from '" + firstUser.getPerson() + "' to '"
-                + secondUser.getPerson() + "'");
-        System.out.println("Current balance for '" + firstUser.getPerson() + "' is '"
-                + rounded.Round(firstUser.getBill().getAmount()) + "'");
-        System.out.println("Current balance for '" + secondUser.getPerson() + "' is '"
-                + rounded.Round(secondUser.getBill().getAmount()) + "'");
-        return null;
-*/
-
-
-
+    @Override
     public String toString() {
         return bankOperation();
     }

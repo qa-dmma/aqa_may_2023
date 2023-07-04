@@ -9,8 +9,9 @@ import com.hillel.services.TransfertPayment;
 
 public class Main {
     public static void main(String[] args) {
-        Person firstPerson = new Person("Maksim", "Sharman", "sharmak@gmil.com",
+        Person firstPerson = new Person("Maksim", "Sharman", "sharmak@gmail.com",
                 "+380972323656");
+
         Bill firstBill = new Bill(100.49);
         Account firstAccount = new Account(firstPerson, firstBill);
         Person secondPerson = new Person("Iryna", "Ryban", "rybir@yahoo.com", "+3880505900695");

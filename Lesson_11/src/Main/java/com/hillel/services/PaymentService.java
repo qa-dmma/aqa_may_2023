@@ -18,14 +18,7 @@ public class PaymentService extends AbstractServices {
         return null;
     }
 
-//    private String PaymentServiceCount() {
-//        result = account.getBill().setAmount(account.getBill().getAmount() - sum);
-//        Rounded rounded = new Rounded();
-//        System.out.println("The amount '" + sum + "' has been transfered from user '" + account.getPerson() + "'. Total balance is: '"
-//                + (rounded.Round(result)) + "'");
-//        return null;
-//    }
-
+    @Override
     public String toString() {
         return bankOperation();
     }

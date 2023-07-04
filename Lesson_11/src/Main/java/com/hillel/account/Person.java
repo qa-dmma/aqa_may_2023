@@ -8,8 +8,16 @@ public class Person extends AbstractPerson {
         super(name, lastName, mail, telephoneNumber);
     }
 
+    public Person() {
+    }
 
-    public String toString() {
+    protected String toLine() {
         return "Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".";
+    }
+
+    @Override
+    public String toString() {
+        System.out.println("Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".");
+        return null;
     }
 }
