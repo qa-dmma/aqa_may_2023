@@ -4,7 +4,9 @@ import com.hillel.account.Account;
 
 public abstract class AbstractServices {
 
-    protected double result, sum, amount;
+    protected double result;
+    protected double sum;
+    protected double amount;
     protected Account account;
     protected Account firstUser;
     protected Account secondUser;
