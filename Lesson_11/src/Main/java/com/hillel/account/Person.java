@@ -11,13 +11,13 @@ public class Person extends AbstractPerson {
     public Person() {
     }
 
-    protected String toLine() {
-        return "Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".";
-    }
+
 
     @Override
     public String toString() {
-        System.out.println("Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".");
-        return null;
+        return "Current User: " + name + " " + lastName + ", Mail: " + mail + ", Phone Number: " + telephoneNumber + ".";
+    }
+    public void toLine() {
+        System.out.println(toString());
     }
 }

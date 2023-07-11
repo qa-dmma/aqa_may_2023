@@ -1,9 +1,10 @@
 package com.hillel.abs;
 
-import com.hillel.account.Account;
-
 public abstract class AbstractPerson {
-    protected String name, lastName, mail, telephoneNumber;
+    protected String name;
+    protected String lastName;
+    protected String mail;
+    protected String telephoneNumber;
 
 
     protected AbstractPerson(String name, String lastName, String mail, String telephoneNumber) {
