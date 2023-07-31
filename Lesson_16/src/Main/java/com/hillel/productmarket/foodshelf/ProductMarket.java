@@ -1,4 +1,7 @@
-package com.hillel.ProductMarket.foodShelf;
+package com.hillel.productmarket.foodshelf;
+
+import com.hillel.productmarket.comparators.ProductComparatorByName;
+import com.hillel.productmarket.comparators.ProductComparatorByPrice;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,4 +68,24 @@ public class ProductMarket {
         String res = joiner.toString();
         return res;
     }
+
+
+    public List<Product> sortByPrice() {
+        List<Product> price = new ArrayList<>(productList);
+        Collections.sort(price);
+        return price;
+    }
+
+    public List<Product> sortByPriceWithComparator() {
+        List<Product> price = new ArrayList<>(productList);
+        Collections.sort(price, new ProductComparatorByPrice());
+        return price;
+    }
+
+    public List<Product> sortByNameWithComparator() {
+        List<Product> price = new ArrayList<>(productList);
+        Collections.sort(price, new ProductComparatorByName());
+        return price;
+    }
+
 }
