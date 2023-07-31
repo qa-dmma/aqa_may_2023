@@ -1,6 +1,6 @@
 package com.hillel.builder;
 
-public class Main {
+public class DemoBuilder {
     static int valueA = 3;
     static int valueB = 56;
 
