@@ -1,7 +1,7 @@
 package com.hillel.builder;
 
-import static com.hillel.builder.Main.valueA;
-import static com.hillel.builder.Main.valueB;
+import static com.hillel.builder.DemoBuilder.valueA;
+import static com.hillel.builder.DemoBuilder.valueB;
 
 public class MultiplyValues {
     public static StringBuilder Multi() {
