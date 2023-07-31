@@ -1,11 +1,11 @@
 package com.hillel.productmarket.foodshelf;
 
 
-public class Product implements Comparable<Product> {
+public class Product {
     private String name;
-    private int price;
+    private float price;
 
-    public Product(String name, int price) {
+    public Product(String name, float price) {
         this.name = name;
         this.price = price;
     }
@@ -14,7 +14,7 @@ public class Product implements Comparable<Product> {
         return name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -24,10 +24,5 @@ public class Product implements Comparable<Product> {
                 "name='" + name + '\'' +
                 ", price=" + price +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Product o) {
-        return Integer.compare(price, o.price);
     }
 }

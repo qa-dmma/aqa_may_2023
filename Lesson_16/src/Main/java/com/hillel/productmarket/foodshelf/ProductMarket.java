@@ -1,12 +1,7 @@
 package com.hillel.productmarket.foodshelf;
 
-import com.hillel.productmarket.comparators.ProductComparatorByName;
-import com.hillel.productmarket.comparators.ProductComparatorByPrice;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ProductMarket {
@@ -19,73 +14,32 @@ public class ProductMarket {
     }
 
     public List<String> returnProductName() {
-        List<String> result = new ArrayList<>();
-        for (Product s : productList) {
-            result.add(s.getName());
-        }
+        List<String> result = productList.stream().map(n -> n.getName()).collect(Collectors.toList());
         return result;
     }
 
     public List<String> sortProductName() {
         List<String> result = new ArrayList<>();
-        for (Product s : productList) {
-            result.add(s.getName());
-        }
-        Collections.sort(result);
+        productList.stream().sorted(Comparator.comparing(Product::getName)).forEach(n -> result.add(n.getName()));
         return result;
     }
 
-    public List<Integer> sortByHightPrice() {
-        List<Integer> result = new ArrayList<>();
-        for (Product s : productList) {
-            if (s.getPrice() > 10) {
-                result.add(s.getPrice());
-            }
-        }
+    public List<Float> sortByHightPrice() {
+        List<Float> result = new ArrayList<>();
+        productList.stream().filter(p -> p.getPrice() > 10).forEach(s -> result.add(s.getPrice()));
         return result;
     }
 
-    public List<Integer> sortByLowerPrice() {
-        List<Integer> result = new ArrayList<>();
-        for (Product s : productList) {
-            if (s.getPrice() < 5) {
-                result.add(s.getPrice());
-            }
-        }
+    public List<Float> sortByLowerPrice() {
+        List<Float> result = new ArrayList<>();
+        productList.stream().filter(p -> p.getPrice() < 0).forEach(s -> result.add(s.getPrice()));
         return result;
     }
 
     public String priceToString() {
-        List<Integer> result = new ArrayList<>();
-        String delim = ",";
-        for (Product s : productList) {
-            result.add(s.getPrice());
-        }
-        StringJoiner joiner = new StringJoiner(delim);
-        for (Integer integer : result) {
-            joiner.add(integer.toString());
-        }
-        String res = joiner.toString();
-        return res;
+        String result = productList.stream().map(p -> p.getPrice()).collect(Collectors.toList()).toString();
+        return result;
     }
 
-
-    public List<Product> sortByPrice() {
-        List<Product> price = new ArrayList<>(productList);
-        Collections.sort(price);
-        return price;
-    }
-
-    public List<Product> sortByPriceWithComparator() {
-        List<Product> price = new ArrayList<>(productList);
-        Collections.sort(price, new ProductComparatorByPrice());
-        return price;
-    }
-
-    public List<Product> sortByNameWithComparator() {
-        List<Product> price = new ArrayList<>(productList);
-        Collections.sort(price, new ProductComparatorByName());
-        return price;
-    }
 
 }
