@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Some suite" verbose="2">
+    <test name="Some suite test">
+        <classes>
+            <class name="com.hillel.calc.calculator.CalculatorTest">
+                <methods>
+                    <exclude name="testMultiply"></exclude>
+                    <include name="testDivision"></include>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>

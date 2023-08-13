@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="parametrXML">
+    <test name="Test with XML parametr">
+        <parameter name="parametr_A" value="10"></parameter>
+        <parameter name="parametr_B" value="5"></parameter>
+        <parameter name="parametr_Result" value="15"></parameter>
+        <classes>
+            <class name="com.hillel.calc.calculator.CalculatorDPTest"></class>
+        </classes>
+    </test>
+</suite>
