@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SingUpPage" verbose="0">
+    <test name="Zip Code and Sign up pages" parallel="false">
+        <classes>
+            <class name="com.hillel.sharelane.usersingup.testSingUpPageZipCode"></class>
+            <class name="com.hillel.sharelane.usersingup.testSingUpPageForm"></class>
+        </classes>
+    </test>
+</suite>
