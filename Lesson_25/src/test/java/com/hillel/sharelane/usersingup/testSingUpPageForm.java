@@ -54,7 +54,7 @@ public class testSingUpPageForm {
         driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
         WebElement registerButton = driver.findElement(RegisterButton);
         registerButton.click();
-        WebElement singUpWarningMessage = driver.findElement(By.xpath("//span[@class='error_message']"));
+        WebElement singUpWarningMessage = driver.findElement(SingUpWarningMessage);
         Assert.assertEquals(singUpWarningMessage.getText(), "Oops, error on page. " +
                 "Some of your fields have invalid data or email was previously used");
     }
