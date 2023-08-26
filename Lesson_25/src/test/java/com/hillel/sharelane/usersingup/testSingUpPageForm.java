@@ -1,6 +1,5 @@
 package com.hillel.sharelane.usersingup;
 
-import com.hillel.sharelane.configuration.WebDriverInit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
@@ -8,89 +7,80 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
-import static com.hillel.sharelane.configuration.WebDriverInit.driver;
-
 
 public class testSingUpPageForm {
+    private static WebDriver driver;
+    private SingUpPageForm SingUpFormPage = new SingUpPageForm();
+    private By FirstName = SingUpFormPage.FirstName();
+    private By LastName = SingUpFormPage.LastName();
+    private By ConfPass = SingUpFormPage.ConfPass();
+    private By Email = SingUpFormPage.Email();
+    private By Pass = SingUpFormPage.Pass();
+    private By RegisterButton = SingUpFormPage.RegisterButton();
+    private By SingUpWarningMessage = SingUpFormPage.SingUpWarningMessage();
+    private By ConfirmationMessage = SingUpFormPage.ConfirmationMessage();
+
 
     @BeforeClass
     public void profileSetup() {
-        WebDriverInit.getDriver();
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
+        System.setProperty("webdriver.edge.driver", "src/test/resources/edgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
     }
 
     @Test(groups = {"Sign Validation Message"}, priority = 1)
     public void registrationMessage() {
-        SingUpPage.preconditionForSingUp();
-        SingUpPage page = new SingUpPage();
-        WebElement firstNameField = driver.findElement(page.pageFirstName);
-        WebElement lastNameField = driver.findElement(page.pageLastName);
-        WebElement emailField = driver.findElement(page.pageEmail);
-        WebElement passField = driver.findElement(page.pagePass);
-        WebElement passConf = driver.findElement(page.pageConfPass);
-        WebElement registerButton = driver.findElement(page.pageRegisterButton);
+        driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
+        WebElement firstNameField = driver.findElement(FirstName);
+        WebElement lastNameField = driver.findElement(LastName);
+        WebElement emailField = driver.findElement(Email);
+        WebElement passField = driver.findElement(Pass);
+        WebElement passConf = driver.findElement(ConfPass);
+        WebElement registerButton = driver.findElement(RegisterButton);
         firstNameField.sendKeys("Tester");
         lastNameField.sendKeys("WebDriwer");
         emailField.sendKeys("qa@test.com");
         passField.sendKeys("12345");
         passConf.sendKeys("654321");
         registerButton.click();
-        try {
-            Assert.assertEquals(page.getTextMessage(page.pageSingUpWarningMessage), "Oops, error on page. " +
-                    "Some of your fields have invalid data or email was previously used");
-        } catch (TimeoutException e) {
-            Assert.fail("Fail test. Message is NOT found");
-        }
+        WebElement singUpWarningMessage = driver.findElement(SingUpWarningMessage);
+        Assert.assertEquals(singUpWarningMessage.getText(), "Oops, error on page. " +
+                "Some of your fields have invalid data or email was previously used");
     }
 
     @Test(groups = {"Sign Validation Message"}, priority = 2)
     public void emptyFieldsMessage() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        SingUpPage.preconditionForSingUp();
-        SingUpPage page = new SingUpPage();
-        WebElement registerButton = driver.findElement(page.pageRegisterButton);
+        driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
+        WebElement registerButton = driver.findElement(RegisterButton);
         registerButton.click();
-        try {
-            Assert.assertEquals(page.getTextMessage(page.pageSingUpWarningMessage), "Oops, error on page. " +
-                    "Some of your fields have invalid data or email was previously used");
-        } catch (TimeoutException e) {
-            Assert.fail("Fail test. Message is NOT found");
-        }
+        WebElement singUpWarningMessage = driver.findElement(By.xpath("//span[@class='error_message']"));
+        Assert.assertEquals(singUpWarningMessage.getText(), "Oops, error on page. " +
+                "Some of your fields have invalid data or email was previously used");
     }
 
-    @Test(groups = {"Sign Validation Message"}, priority = 1)
+    @Test(groups = {"Sign Validation Message"}, priority = 3)
     public void registrationConfirmationMessage() {
-        SingUpPage.preconditionForSingUp();
-        SingUpPage page = new SingUpPage();
-        WebElement firstNameField = driver.findElement(page.pageFirstName);
-        WebElement lastNameField = driver.findElement(page.pageLastName);
-        WebElement emailField = driver.findElement(page.pageEmail);
-        WebElement passField = driver.findElement(page.pagePass);
-        WebElement passConf = driver.findElement(page.pageConfPass);
-        WebElement registerButton = driver.findElement(page.pageRegisterButton);
+        driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
+        WebElement firstNameField = driver.findElement(FirstName);
+        WebElement lastNameField = driver.findElement(LastName);
+        WebElement emailField = driver.findElement(Email);
+        WebElement passField = driver.findElement(Pass);
+        WebElement passConf = driver.findElement(ConfPass);
+        WebElement registerButton = driver.findElement(RegisterButton);
         firstNameField.sendKeys("Tester");
-        lastNameField.sendKeys("WebDriwer");
+        lastNameField.sendKeys("WebDriver");
         emailField.sendKeys("qa@test.com");
         passField.sendKeys("123456");
         passConf.sendKeys("123456");
         registerButton.click();
-        try {
-            Assert.assertEquals(page.getTextMessage(page.pageConfirmationMessage), "Account is created!");
-        } catch (TimeoutException e) {
-            Assert.fail("Fail test. Message is NOT found");
-        }
+        WebElement confirmationMessage = driver.findElement(ConfirmationMessage);
+        Assert.assertEquals(confirmationMessage.getText(), "Account is created!");
     }
 
     @AfterTest
     void endOfTests() {
         driver.quit();
     }
-
 }
 
