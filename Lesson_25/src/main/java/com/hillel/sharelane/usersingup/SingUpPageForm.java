@@ -1,45 +1,64 @@
 package com.hillel.sharelane.usersingup;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SingUpPageForm {
-    protected By FirstName() {
-        By FirstName = By.xpath("//input[@name='first_name']");
-        return FirstName;
+    @FindBy(xpath = "//input[@name='first_name']")
+    private WebElement firstName;
+    @FindBy(xpath = "//input[@name='last_name']")
+    private WebElement lastName;
+    @FindBy(xpath = "//input[@name='email']")
+    private WebElement email;
+    @FindBy(xpath = "//input[@name='password1']")
+    private WebElement pass;
+    @FindBy(xpath = "//input[@name='password2']")
+    private WebElement confPass;
+
+    @FindBy(xpath = "//input[@value='Register'] ")
+    private WebElement registrationButton;
+
+    @FindBy(xpath = "//span[@class='error_message']")
+    private WebElement singUpWarningMessage;
+
+    @FindBy(xpath = "//span[@class='confirmation_message']")
+    private WebElement confirmationMessage;
+
+    public SingUpPageForm(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 
-    protected By LastName() {
-        By LastName = By.xpath("//input[@name='last_name']");
-        return LastName;
+    public WebElement getFirstName() {
+        return firstName;
     }
 
-    protected By Email() {
-        By Email = By.xpath("//input[@name='email']");
-        return Email;
+    public WebElement getLastName() {
+        return lastName;
     }
 
-    protected By Pass() {
-        By Pass = By.xpath("//input[@name='password1']");
-        return Pass;
+    public WebElement getEmail() {
+        return email;
     }
 
-    protected By ConfPass() {
-        By ConfPass = By.xpath("//input[@name='password2']");
-        return ConfPass;
+    public WebElement getPass() {
+        return pass;
     }
 
-    protected By RegisterButton() {
-        By RegisterButton = By.xpath("//input[@value='Register']");
-        return RegisterButton;
+    public WebElement getConfPass() {
+        return confPass;
     }
 
-    protected By SingUpWarningMessage() {
-        By SingUpWarningMessage = By.xpath("//span[@class='error_message']");
-        return SingUpWarningMessage;
+    public WebElement getRegistrationButton() {
+        return registrationButton;
     }
 
-    protected By ConfirmationMessage() {
-        By ConfirmationMessage = By.xpath("//span[@class='confirmation_message']");
-        return ConfirmationMessage;
+    public WebElement getSingUpWarningMessage() {
+        return singUpWarningMessage;
+    }
+
+    public WebElement getConfirmationMessage() {
+        return confirmationMessage;
     }
 }

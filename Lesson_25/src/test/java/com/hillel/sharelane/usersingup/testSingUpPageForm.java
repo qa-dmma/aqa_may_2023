@@ -10,41 +10,33 @@ import org.testng.annotations.Test;
 
 public class testSingUpPageForm {
     private static WebDriver driver;
-    private SingUpPageForm SingUpFormPage = new SingUpPageForm();
-    private By FirstName = SingUpFormPage.FirstName();
-    private By LastName = SingUpFormPage.LastName();
-    private By ConfPass = SingUpFormPage.ConfPass();
-    private By Email = SingUpFormPage.Email();
-    private By Pass = SingUpFormPage.Pass();
-    private By RegisterButton = SingUpFormPage.RegisterButton();
-    private By SingUpWarningMessage = SingUpFormPage.SingUpWarningMessage();
-    private By ConfirmationMessage = SingUpFormPage.ConfirmationMessage();
-
+    private SingUpPageForm singUpFormPage;
 
     @BeforeClass
     public void profileSetup() {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         System.setProperty("webdriver.edge.driver", "src/test/resources/edgedriver.exe");
         driver = new EdgeDriver();
+        singUpFormPage = new SingUpPageForm(driver);
         driver.manage().window().maximize();
     }
 
     @Test(groups = {"Sign Validation Message"}, priority = 1)
     public void registrationMessage() {
         driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
-        WebElement firstNameField = driver.findElement(FirstName);
-        WebElement lastNameField = driver.findElement(LastName);
-        WebElement emailField = driver.findElement(Email);
-        WebElement passField = driver.findElement(Pass);
-        WebElement passConf = driver.findElement(ConfPass);
-        WebElement registerButton = driver.findElement(RegisterButton);
+        WebElement firstNameField = singUpFormPage.getFirstName();
+        WebElement lastNameField = singUpFormPage.getLastName();
+        WebElement emailField = singUpFormPage.getEmail();
+        WebElement passField = singUpFormPage.getPass();
+        WebElement passConf = singUpFormPage.getConfPass();
+        WebElement registerButton = singUpFormPage.getRegistrationButton();
         firstNameField.sendKeys("Tester");
         lastNameField.sendKeys("WebDriwer");
         emailField.sendKeys("qa@test.com");
         passField.sendKeys("12345");
         passConf.sendKeys("654321");
         registerButton.click();
-        WebElement singUpWarningMessage = driver.findElement(SingUpWarningMessage);
+        WebElement singUpWarningMessage = singUpFormPage.getSingUpWarningMessage();
         Assert.assertEquals(singUpWarningMessage.getText(), "Oops, error on page. " +
                 "Some of your fields have invalid data or email was previously used");
     }
@@ -52,9 +44,9 @@ public class testSingUpPageForm {
     @Test(groups = {"Sign Validation Message"}, priority = 2)
     public void emptyFieldsMessage() {
         driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
-        WebElement registerButton = driver.findElement(RegisterButton);
+        WebElement registerButton = singUpFormPage.getRegistrationButton();
         registerButton.click();
-        WebElement singUpWarningMessage = driver.findElement(SingUpWarningMessage);
+        WebElement singUpWarningMessage = singUpFormPage.getSingUpWarningMessage();
         Assert.assertEquals(singUpWarningMessage.getText(), "Oops, error on page. " +
                 "Some of your fields have invalid data or email was previously used");
     }
@@ -62,19 +54,19 @@ public class testSingUpPageForm {
     @Test(groups = {"Sign Validation Message"}, priority = 3)
     public void registrationConfirmationMessage() {
         driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=12345");
-        WebElement firstNameField = driver.findElement(FirstName);
-        WebElement lastNameField = driver.findElement(LastName);
-        WebElement emailField = driver.findElement(Email);
-        WebElement passField = driver.findElement(Pass);
-        WebElement passConf = driver.findElement(ConfPass);
-        WebElement registerButton = driver.findElement(RegisterButton);
+        WebElement firstNameField = singUpFormPage.getFirstName();
+        WebElement lastNameField = singUpFormPage.getLastName();
+        WebElement emailField = singUpFormPage.getEmail();
+        WebElement passField = singUpFormPage.getPass();
+        WebElement passConf = singUpFormPage.getConfPass();
+        WebElement registerButton = singUpFormPage.getRegistrationButton();
         firstNameField.sendKeys("Tester");
         lastNameField.sendKeys("WebDriver");
         emailField.sendKeys("qa@test.com");
         passField.sendKeys("123456");
         passConf.sendKeys("123456");
         registerButton.click();
-        WebElement confirmationMessage = driver.findElement(ConfirmationMessage);
+        WebElement confirmationMessage = singUpFormPage.getConfirmationMessage();
         Assert.assertEquals(confirmationMessage.getText(), "Account is created!");
     }
 
